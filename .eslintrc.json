@@ -1,4 +1,0 @@
-{
-  "extends": ["@nx/typescript"],
-  "rules": {}
-}
