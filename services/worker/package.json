@@ -1,0 +1,6 @@
+{
+  "name": "@opsforge/worker",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Background job worker — placeholder for BullMQ implementation"
+}
