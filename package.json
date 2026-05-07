@@ -2,6 +2,10 @@
   "name": "@opsforge/source",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=11"
+  },
   "scripts": {
     "prepare": "husky"
   },
@@ -31,7 +35,7 @@
     "esbuild": "^0.27.0",
     "eslint": "^10.2.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "16.4.0",
     "nx": "22.7.1",
     "prettier": "^3.8.3",
     "tslib": "^2.3.0",
