@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/opsforge
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: opsforge
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
