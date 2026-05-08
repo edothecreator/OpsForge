@@ -7,6 +7,7 @@
     "npm": ">=11"
   },
   "scripts": {
+    "commit": "git-cz",
     "prepare": "husky"
   },
   "private": true,
@@ -36,6 +37,8 @@
     "@types/node": "20.19.9",
     "@typescript-eslint/eslint-plugin": "^8.59.2",
     "@typescript-eslint/parser": "^8.59.2",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "esbuild": "^0.27.0",
     "eslint": "^10.2.1",
     "husky": "^9.1.7",
@@ -61,5 +64,10 @@
     "fastify-plugin": "~5.0.1",
     "pino": "^10.3.1",
     "pino-http": "^11.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
